@@ -6,8 +6,7 @@ const app = express();
 
 app.use(express.static('public'));
 
-app.get('/api/test', async (req, res) => {
-  console.log('test');
+app.get('/api/getAccessibilityWarnings', async (req, res) => {
   if (!req.query.url) {
     res.status(400).json({ error: 'url is required' });
   } else {
@@ -16,14 +15,4 @@ app.get('/api/test', async (req, res) => {
   }
 });
 
-app.listen(PORT, () => {
-  console.log(`server started on port: ${PORT}`);
-});
-
-async function run() {
-  const response = await pa11y('https://www.bankofamerica.com/');
-  console.log(typeof response);
-  console.log(response);
-}
-
-run();
+app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
